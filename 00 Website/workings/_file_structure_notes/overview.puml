@@ -1,0 +1,101 @@
+@startuml SalesPurchase&Nominal
+
+actor Sales_Clerk as sc 
+actor Purchase_Clerk as pc 
+
+
+entity Sales as s 
+entity Purchases as p 
+entity Nominal as n 
+
+entity reporting as r 
+entity Bank as b 
+
+actor Accounts_Clerk as ac 
+actor Debtor_Creditor as dc
+
+
+group#Gold #b4cded  Inputs
+    hnote over s: zero balances for every transaction - one side to sales or purchases - one to the nominal
+    sc o-> s :input transactions daily/batch
+    s --> r 
+    sc o-> n :input transactions daily/batch
+    n --> r
+    r -> sc : check sales v nominal daily/batch  
+
+    pc o-> p :input transactions daily/batch
+    p --> r
+    pc o-> n :input transactions daily/batch
+    n --> r
+    r -> pc : check purchases v nominal daily/batch 
+    
+    group#Gold #b96d40 Corrections & Exceptions
+        hnote over sc, pc : create journal to correct or add 
+        sc -> n : post journal
+        sc -> s : post journal
+        pc -> n : post journal
+        pc -> p : post journal
+    
+    end
+
+end
+
+group#Gold #ffcf9c Bank Statement & Cashflow
+    dc --> b : payments made
+    b o-> ac : download transactions daily
+    ac o-> n : input transactions daily
+    n --> r 
+    r o-> ac: check bank entries against bank statement batch/daily 
+    r o-> ac: bank transactions
+    hnote over ac : bank reconciliation \ndaily
+
+    r o-> ac: nominal transactions 
+    rnote over n, ac  : report all Past Auth transactions by totals only,\nOverdue trans grp by date, auth & type; subtotal on all grp.\nFuture transactions grouped by type, auth & month/week 
+
+    hnote over ac : produce cashflow report\n detailing overdue, current \nand future transactions
+end
+
+
+group#Gold #44ffd2 Collection of Debts
+r -> dc : debtor statements
+r -> s : debts outstanding
+s -> dc : credit control processing
+dc --> b : payment made
+end
+ 
+group#Gold #44ffd2 Payment of Creditors
+    dc -> p : creditor statements
+    pc -> r : request creditor transactions
+    r -> pc : provide detail of creditor account
+    pc -> p : updated authorisation of ind transactions
+    ====
+
+
+    pc o-> r : request authorised creditors list weekly/ monthly
+    r -> pc : money owing (invoices to pay) weekly/monthly
+    pc -> ac: check cashflow & credit terms
+    ac o-> pc: authorise payments
+    pc o-> b : payment run weekly/monthly
+    b --> dc : payment made
+end
+
+group#Gold #ffcf9c Trial Balance
+    ac o-> r : request all open nominal transactions
+    r -> ac : return transactions in trial balance format
+    rnote over r, ac : transactions grp by type, auth, full code structure \n(may be several layers deep see coding doc), date. 
+    hnote over ac : check Trial Balance \n and confirm position 
+
+    hnote over ac: create and check Balance Sheet
+
+    hnote over ac : close off all ledgers \nto start new accounting period 
+
+
+end 
+
+
+
+
+
+
+
+@enduml

@@ -1,0 +1,68 @@
+@startuml bankStatement
+
+entity Sales as a
+entity Purchases as c
+entity Bank as b 
+entity Transactions as d 
+
+entity Transfers as t 
+entity Reports as r 
+actor Administrator as e
+!$count = 0
+
+
+
+group Handshake 
+    group #LightGreen count_errors
+        a -> b:Authentication request
+        alt#Gold #LightBlue success
+            b-> a: Request successfull
+
+        else #Pink failure
+            loop 3 times
+                b -[#red]> Log: count number of incorrect attempts
+                rnote over Log : incriment count
+                hnote over Log: count test
+                !if ($count <= 3)
+                Log -> a : incorrect attempt please re-enter details
+                !else 
+                 Log -> a :too many incorrect attempts please contact admin
+                !endif
+             end
+        end
+    end
+end
+
+group#Gold #44af69 aquire transactions 
+    rnote across : import transactions 
+    rnote over a : calculate \nbatch total \n & line \n count
+    a -> e : report totals
+    rnote over e : check totals\nand authorise
+    e -> b : start transfer
+    loop line count times
+        a --> b: import transaction
+    end
+
+    rnote over c : calculate \nbatch total
+    c -> e : transfer total
+    rnote over e : check total
+    e -> b : start transfer
+    loop 1000 times
+        c --> b: import transaction
+    end
+
+
+    group#gold #f0f4ef feedback
+        rnote across : reporting
+        rnote over b : create detailed \nreport inctimestamp \n& transaction details
+        rnote over b : create check total report  
+        b-> Log: repts transfered
+        Log -> e : process complete and rpts available for viewing. 
+    end
+end
+
+
+
+
+
+@enduml

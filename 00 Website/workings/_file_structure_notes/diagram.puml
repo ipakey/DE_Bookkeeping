@@ -1,0 +1,30 @@
+@startuml  diamond
+
+title: cash book
+scale 1
+left to right direction
+
+
+skinparam PackageStyle rect
+actor customer as uid
+actor admin 
+actor bank 
+
+rectangle bank_statement{
+    uid .> (income): include
+   
+    ' (bank )-> (income)
+    (income)->(expenses): exclude
+    (expenses)->(balance): extend
+    (balance).> admin
+}
+
+rectangle cash_book{
+    uid .> (booking): include
+    (bank)-> (income)
+    (booking)->(income): change status
+    (expenses)->(balance): extend
+    (balance).> admin
+}
+
+@enduml

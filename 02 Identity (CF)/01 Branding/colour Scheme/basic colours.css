@@ -1,0 +1,27 @@
+colors {
+
+    /* CSS HEX */
+    --jade: #44af69ff;
+    --indigo-dye: #344966ff;
+    --powder-blue: #b4cdedff;
+    --baby-powder: #f0f4efff;
+    --burgundy: #941c2fff;
+    --aquamarine: #44ffd2ff;
+    --dark-purple: #3b1c32ff;
+    --dark-slate-gray: #33473fff;
+    --sunset: #ffcf9cff;
+    --brown-sugar: #b96d40ff;
+
+    /* CSS HSL */
+    --aquamarine: hsla(166, 100%, 63%, 1);
+    --dark-purple: hsla(317, 36%, 17%, 1);
+    --dark-slate-gray: hsla(156, 16%, 24%, 1);
+    --sunset: hsla(31, 100%, 81%, 1);
+    --brown-sugar: hsla(22, 49%, 49%, 1);
+    --jade: hsla(141, 44%, 48%, 1);
+    --indigo-dye: hsla(215, 32%, 30%, 1);
+    --powder-blue: hsla(214, 61%, 82%, 1);
+    --baby-powder: hsla(108, 19%, 95%, 1);
+    --burgundy: hsla(351, 68%, 35%, 1);
+
+}

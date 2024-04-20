@@ -1,0 +1,27 @@
+@startmindmap software
+
+<style>
+    mindmapDiagram{
+            node{
+        BackgroundColor AntiqueWhite
+        }
+        :depth(0){
+            BackgroundColor LightBlue
+        }
+        :depth(2){
+            BackgroundColor SeaGreen
+            color MintCream
+        }
+    }
+</style>
+
+* Linux
+** NixOs
+** Debian
+
+left side 
+** Ubuntu
+*** Linux Mint
+*** Kibuntu
+*** Lubuntu
+@endmindmap

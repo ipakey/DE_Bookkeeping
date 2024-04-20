@@ -1,0 +1,101 @@
+@startuml class
+
+' class diagram
+' class Duck extends Animal{
+'     +String beakColour
+'     +swim()
+'     +quack()
+' }
+
+' class Fish extends Animal{
+'     -int sizeInFeeet
+'     -canEat()
+' }
+
+' Two column flow
+' |A Section|
+' start
+' :step 1;
+' |#AntiqueWhite|B Section|
+' :step 2;
+' :step 3;
+' |A Section|
+' :step 4;
+' |B Section|
+' :step 5;
+' stop;
+
+' actor user 
+' hide footbox
+' user -> A: Do Work
+' activate A
+' A -> B : create request
+' activate B
+' B -> C :do work
+' activate C
+' C --> B : work done
+' destroy C
+' B --> A : request created
+' deactivate B
+' A -> user : done
+' deactivate A
+
+
+' title: cash book
+' scale 1
+' left to right direction
+' top to bottom direction
+
+' skinparam PackageStyle rect
+' actor customer as uid
+' actor admin 
+' actor bank 
+
+' rectangle bank_statement{
+'     uid .> (income): include
+   
+    ' (bank )-> (income)
+'     (income)->(expenses): exclude
+'     (expenses)->(balance): extend
+'     (balance).> admin
+' }
+
+' rectangle cash_book{
+'     uid .> (booking): include
+'     (bank)-> (income)
+'     (booking)->(income): change status
+'     (expenses)->(balance): extend
+'     (balance).> admin
+' }
+
+
+!include <archimate/Archimate.puml>
+
+title Archimate Sample - Req & App Services
+
+'Elements'
+Motivation_Requirement(ReqPayrollStandard, "Do Payroll with standard system")
+Motivation_Requirement(ReqBudgetPlanning, "Do budget planning with ERP system")
+
+Application_Service(ASPayroll,"Payroll Service")
+Application_Service(ASBudgetPlanning,"Budget Planning Service")
+Application_Service(SAPHREx,"Export Procedure")
+
+
+Application_Component(ACSAPFinanceAccRec,"SAP Finance - Acc Rec")
+Application_Component(ACSAPHR,"SAP Human Resources")
+Application_Component(ACSAPFin,"SAP Finance")
+Application_Component(ACSAP,"SAP")
+
+'Relationships'
+Rel_Realization_Down(ASPayroll,ReqPayrollStandard)
+Rel_Realization_Down(ASBudgetPlanning,ReqBudgetPlanning)
+Rel_Realization_Down(ACSAPFinanceAccRec,ASBudgetPlanning)
+Rel_Realization_Down(ACSAPHR,SAPHREx)
+
+Rel_Composition_Down(ACSAPFin,ACSAPFinanceAccRec)
+
+Rel_Realization_Down(SAPHREx,ASPayroll)
+Rel_Composition_Down(ACSAP,ACSAPHR)
+Rel_Composition_Down(ACSAP,ACSAPFin)
+@enduml

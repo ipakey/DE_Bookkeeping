@@ -1,0 +1,43 @@
+@startuml user_cntl
+
+entity Sales as a
+entity Purchases as c
+
+
+entity Transfers as t 
+entity Reports as r 
+actor Administrator as e
+!$count = 0
+
+group Handshake 
+    group #LightGreen count_errors
+        a -> e:Authentication request
+        alt#Gold #LightBlue success
+            e-> a: Request successfull 
+            rnote over a, t : proceed to Session_Information
+        alt#Gold #Pink incorrect
+            !if ($count <= 3)
+                loop 3 times
+                a -[#red]> e: count number of incorrect attempts
+                rnote over Log : incriment count
+                hnote over Log: count test
+                e -[#red]> a : incorrect attempt please re-enter details
+            !endif
+        else #Pink too many attempts
+            e -[#red]> a :too many incorrect attempts please contact admin
+        end
+    end
+end
+
+group Session_Information
+    group#Gold #LightGreen info
+        [-> r : user_number
+        [-> r : subscription status
+        [-> r : authorisations
+        [-> r : 
+        [-> r :
+        [-> r :
+
+    end
+end
+@enduml

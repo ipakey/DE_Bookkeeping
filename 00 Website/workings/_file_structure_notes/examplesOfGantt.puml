@@ -1,0 +1,11 @@
+@startgantt project 
+Project starts 2024-04-12
+[Build prototype] lasts 9 days
+[Ptype built] happens at 2024-04-20
+[Test prototype] lasts 2 days
+[Test prototype] starts at [Build prototype]'s end
+[Ptype complete] happens 2024-04-23
+[Set up assembly line] lasts 12 days
+[Set up assembly line] starts at [Ptype complete]'s end
+@endgantt
+

@@ -1,0 +1,11 @@
+@startuml
+
+participant Alice as a 
+participant Bob as b 
+
+a -> b:""->  ""
+
+a o<-->o b :chalange <-> outcome 
+
+a -\\o b: ""-\\\\o ""
+@enduml

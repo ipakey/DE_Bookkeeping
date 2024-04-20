@@ -1,0 +1,490 @@
+https://plantuml.com/sequence-diagram
+
+
+->  message between two participants 
+    : indicates the message to show
+
+--> dotted line between two participant
+
+for sequence diagrams only:
+<-- & <- can be used to reverse the direction
+
+o<->o arrow anchored on column lines. 
+o-> anchor to arrow Point 
+-\ 1/2 head to arrow 
+-\\ line head to arrow 
+
+Return Arrows 
+a -> a  normal Arrowhead
+a->>o a line arrow head to end connection. 
+
+
+Incoming and Outgoing messages
+
+use [ for incoming  ] for outgoing
+eg [-> b  incoming to Bob 
+a ->] outgoing from Alice 
+
+Slanted or odd arrows
+You can use the (nn) option (before or after arrow) to make the arrows slanted, where nn is the number of shift pixels.
+
+' @startuml test1
+A ->(10) B: text 10
+B ->(10) A: text 10
+
+A ->(10) B: text 10
+A (10)<- B: text 10
+' @enduml
+
+' @startuml test2
+A ->(40) B++: Rq
+B -->(20) A--: Rs
+' @enduml
+
+
+FIND OUT ABOUT teoz!!
+@startuml test3
+!pragma teoz true
+A ->(50) C: Starts\nwhen 'B' sends
+& B ->(25) C: \nBut B's message\n arrives before A's
+'@enduml
+
+
+
+KEYWORDS
+
+actor
+boundary
+control
+entity
+database
+collections
+queue
+
+'@startuml test4
+participant Participant as Foo
+actor       Actor       as Foo1
+boundary    Boundary    as Foo2
+control     Control     as Foo3
+entity      Entity      as Foo4
+database    Database    as Foo5
+collections Collections as Foo6
+queue       Queue       as Foo7
+Foo -> Foo1 : To actor 
+Foo -> Foo2 : To boundary
+Foo -> Foo3 : To control
+Foo -> Foo4 : To entity
+Foo -> Foo5 : To database
+Foo -> Foo6 : To collections
+Foo -> Foo7: To queue
+' @enduml
+
+
+Set colour for actors
+' @startuml test5
+actor Bob #red
+' The only difference between actor
+'and participant is the drawing
+participant Alice
+participant "I have a really\nlong name" as L #99FF99
+/' You can also declare:
+   participant L as "I have a really\nlong name"  #99FF99
+  '/
+
+Alice->Bob: Authentication Request
+Bob->Alice: Authentication Response
+Bob->L: Log transaction
+@enduml
+
+Mainframe 
+' @startuml test6
+mainframe This is a **mainframe**
+Alice->Bob : Hello
+' @enduml
+
+
+Order keyword
+' @startuml test7
+participant Last order 30
+participant Middle order 20
+participant First order 10
+' @enduml
+
+
+Participant multiline declaration
+' @startuml test8
+participant Participant [
+    =Title
+    ----
+    ""SubTitle""
+]
+
+participant Bob
+
+Participant -> Bob
+' @enduml
+
+
+None letters in participant
+' @startuml test9
+Alice -> "Bob()" : Hello
+"Bob()" -> "This is very\nlong" as Long
+' You can also declare:
+' "Bob()" -> Long as "This is very\nlong"
+Long --> "Bob()" : ok
+' @enduml
+
+Stereotypes and Spots 
+It is possible to add stereotypes to participants using << and >>.
+In the stereotype, you can add a spotted character in a colored circle using the syntax (X,color).
+
+' @startuml test11
+
+participant "Famous Bob" as Bob << Generated >>
+participant Alice << (C,#ADD1B2) Testable >>
+
+Bob->Alice: First message
+
+' @enduml
+
+
+
+Message to self
+' @startuml test12
+Alice -> Alice: This is a signal to self.\nIt also demonstrates\nmultiline \ntext
+' @enduml
+
+
+' @startuml test14
+Alice <- Alice: This is a signal to self.\nIt also demonstrates\nmultiline \ntext
+' @enduml
+
+
+Align text
+' @startuml test15
+skinparam sequenceMessageAlign right
+Bob -> Alice : Request
+Alice -> Bob : Response
+' @enduml
+
+Text below the arrow
+' @startuml test16
+skinparam responseMessageBelowArrow true
+Bob -> Alice : hello
+Bob <- Alice : ok
+' @enduml
+
+Arrow Styles
+' @startuml test17
+Bob ->x Alice
+Bob -> Alice
+Bob ->> Alice
+Bob -\ Alice
+Bob \\- Alice
+Bob //-- Alice
+
+Bob ->o Alice
+Bob o\\-- Alice
+
+Bob <-> Alice
+Bob <->o Alice
+' @enduml
+
+Colour a Group Message 
+' @startuml test21
+Alice -> Bob: Authentication Request
+alt#Gold #LightBlue Successful case
+    Bob -> Alice: Authentication Accepted
+else #Pink Failure
+    Bob -> Alice: Authentication Rejected
+end
+' @enduml
+
+
+
+
+Change Arrow Colour 
+' @startuml test22
+Bob -[#red]> Alice : hello
+Alice -[#0000FF]->Bob : ok
+' @enduml
+
+Message sequence numbering
+' @startuml test23
+autonumber
+Bob -> Alice : Authentication Request
+Bob <- Alice : Authentication Response
+' @enduml
+
+Start & increment number for numbering
+' @startuml test24
+autonumber
+Bob -> Alice : Authentication Request
+Bob <- Alice : Authentication Response
+
+autonumber 15
+Bob -> Alice : Another authentication Request
+Bob <- Alice : Another authentication Response
+
+autonumber 40 10
+Bob -> Alice : Yet another authentication Request
+Bob <- Alice : Yet another authentication Response
+
+' @enduml
+
+Line number formatting
+' @startuml test25
+autonumber "<b>[000]"
+Bob -> Alice : Authentication Request
+Bob <- Alice : Authentication Response
+
+autonumber 15 "<b>(<u>##</u>)"
+Bob -> Alice : Another authentication Request
+Bob <- Alice : Another authentication Response
+
+autonumber 40 10 "<font color=red><b>Message 0  "
+Bob -> Alice : Yet another authentication Request
+Bob <- Alice : Yet another authentication Response
+
+' @enduml
+
+Line numbering stop & resume
+' @startuml test26
+autonumber 10 10 "<b>[000]"
+Bob -> Alice : Authentication Request
+Bob <- Alice : Authentication Response
+
+autonumber stop
+Bob -> Alice : dummy
+
+autonumber resume "<font color=red><b>Message 0  "
+Bob -> Alice : Yet another authentication Request
+Bob <- Alice : Yet another authentication Response
+
+autonumber stop
+Bob -> Alice : dummy
+
+autonumber resume 1 "<font color=blue><b>Message 0  "
+Bob -> Alice : Yet another authentication Request
+Bob <- Alice : Yet another authentication Response
+' @enduml
+
+
+Line number compound formats
+' @startuml test28
+autonumber 1.1.1
+Alice -> Bob: Authentication request
+Bob --> Alice: Response
+
+autonumber inc A
+'Now we have 2.1.1
+Alice -> Bob: Another authentication request
+Bob --> Alice: Response
+
+autonumber inc B
+'Now we have 2.2.1
+Alice -> Bob: Another authentication request
+Bob --> Alice: Response
+
+autonumber inc A
+'Now we have 3.1.1
+Alice -> Bob: Another authentication request
+autonumber inc B
+'Now we have 3.2.1
+Bob --> Alice: Response
+' @enduml
+
+
+Autonumber & note
+' @startuml test32
+autonumber 10
+Alice -> Bob
+note right
+  the <U+0025>autonumber<U+0025> works everywhere.
+  Here, its value is ** %autonumber% **
+end note
+Bob --> Alice: //This is the response %autonumber%//
+' @enduml
+
+& 
+
+' @startuml test33
+Alice->Bob : hello
+note left: this is a first note
+
+Bob->Alice : ok
+note right: this is another note
+
+Bob->Bob : I am thinking
+note left
+a note
+can also be defined
+on several lines
+end note
+' @enduml
+
+You can use hnote and rnote keywords to change note shapes :
+hnote for hexagonal note;
+rnote for rectangle note.
+
+' @startuml test34
+caller -> server : conReq
+hnote over caller : idle
+caller <- server : conConf
+rnote over server
+ "r" as rectangle
+ "h" as hexagon
+endrnote
+rnote over server
+ this is
+ on several
+ lines
+endrnote
+hnote over caller
+ this is
+ on several
+ lines
+endhnote
+' @enduml
+
+
+Note over all participants [across]
+You can directly make a note over all participants, with the syntax:
+note across: note_description
+
+' @startuml test35
+Alice->Bob:m1
+Bob->Charlie:m2
+note over Alice, Charlie: Old method for note over all part. with:\n ""note over //FirstPart, LastPart//"".
+note across: New method with:\n""note across""
+Bob->Alice
+hnote across:Note across all part.
+' @enduml
+
+
+
+Titles, Headers & Footers 
+' @startuml test37
+
+header Page Header
+footer Page %page% of %lastpage%
+
+title Example Title
+
+Alice -> Bob : message 1
+Alice -> Bob : message 2
+
+' @enduml
+
+Split 
+' @startuml test42
+
+Alice -> Bob : message 1
+Alice -> Bob : message 2
+
+newpage
+
+Alice -> Bob : message 3
+Alice -> Bob : message 4
+
+newpage A title for the\nlast page
+
+Alice -> Bob : message 5
+Alice -> Bob : message 6
+' ' @enduml
+
+
+Grouping 
+It is possible to group messages together using the following keywords:
+alt/else
+opt
+loop
+par
+break
+critical
+group, followed by a text to be displayed
+It is possible to add a text that will be displayed into the header (for group, see next paragraph 'Secondary group label').
+The end keyword is used to close the group.
+Note that it is possible to nest groups.
+' @startuml test43
+Alice -> Bob: Authentication Request
+
+alt successful case
+
+    Bob -> Alice: Authentication Accepted
+
+else some kind of failure
+
+    Bob -> Alice: Authentication Failure
+    group My own label
+    Alice -> Log : Log attack start
+        loop 1000 times
+            ' Alice -> Bob: DNS Attack
+        end
+    Alice -> Log : Log attack end
+    end
+
+else Another type of failure
+
+   Bob -> Alice: Please repeat
+
+end
+' @enduml
+
+Secondary Group label 
+
+' @startuml test
+Alice -> Bob: Authentication Request
+Bob -> Alice: Authentication Failure
+group My own label [My own label 2]
+    Alice -> Log : Log attack start
+    loop 1000 times
+        Alice -> Bob: DNS Attack
+    end
+    Alice -> Log : Log attack end
+end
+ @enduml
+
+
+
+Themes
+
+Since those themes are included into the library, it is working out of the box: you don't need to install anything on your side. You just have to use the !theme directive:
+Copy to clipboard
+Edit online	
+' @startuml test44
+!theme spacelab
+class Example {
+  Theme spacelab
+}
+' @enduml
+
+
+Copy to clipboard
+Edit online	
+' @startuml test45
+!theme spacelab
+a -> b
+b -> c
+@enduml
+
+
+
+Back to topList of available themes
+Several websites are listing available themes:
+Gallery of all official PlantUML themes.
+Examples of some Puml Themes made by Brett Schwarz on the Theme Gallery.
+Finally, you can list all available themes from your PlantUML library:
+Copy to clipboard
+Edit online	
+@startuml test47
+help themes
+@enduml
+
+
+
+Back to topColoring message with some procedures included on some theme
+Some theme includes some procedures, to help coloring message, as:
+$success("<msg>")
+$failure("<msg>")
+$warning("<msg>")

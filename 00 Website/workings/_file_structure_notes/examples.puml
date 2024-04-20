@@ -1,0 +1,46 @@
+@startuml class
+
+' class diagram
+' class Duck extends Animal{
+'     +String beakColour
+'     +swim()
+'     +quack()
+' }
+
+' class Fish extends Animal{
+'     -int sizeInFeeet
+'     -canEat()
+' }
+
+' Two column flow
+' |A Section|
+' start
+' :step 1;
+' |#AntiqueWhite|B Section|
+' :step 2;
+' :step 3;
+' |A Section|
+' :step 4;
+' |B Section|
+' :step 5;
+' stop;
+
+actor user 
+hide footbox
+user -> A: Do Work
+activate A
+A -> B : create request
+activate B
+B -> C :do work
+activate C
+C --> B : work done
+destroy C
+B --> A : request created
+deactivate B
+A -> user : done
+deactivate A
+
+
+
+
+@enduml
