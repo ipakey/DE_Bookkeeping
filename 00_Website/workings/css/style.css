@@ -1,0 +1,94 @@
+.poiret-one-regular {
+    font-family: "Poiret One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+.cinzel-yfke {
+    font-family: "Cinzel", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.edu-nsw act foundation-yfke {
+    font-family: "Edu NSW ACT Foundation", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.dancing-script-yfke {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.raleway-yfke {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
+
+.mulish-yfke {
+    font-family: "Mulish", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
+
+root {
+    /* Variables */
+    --clr-jade: #44af69ff;
+    --clr-indigo-dye: #344966ff;
+    --clr-powder-blue: #b4cdedff;
+    --clr-baby-powder: #f0f4efff;
+    --clr-burgundy: #941c2fff;
+    --clr-aquamarine: #44ffd2ff;
+    --clr-dark-purple: #3b1c32ff;
+    --clr-dark-slate-gray: #33473fff;
+    --clr-sunset: #ffcf9cff;
+    --clr-brown-sugar: #b96d40ff;
+
+    --clr-dark: var(--clr-baby-powder);
+    --clr-darker: var(--clr-powder-blue);
+    --clr-darkest: var(--clr-indigo-dye);
+    --clr-contrast: var(--clr-aquamarine);
+    --clr-border: var(--clr-brown-sugar);
+    --clr-highlight: var(--clr-sunset);
+    --clr-lowlight: var(--clr-burgundy);
+    --clr-night: var(--clr-dark-slate-gray);
+    --clr-dark-text: var(--clr-dark-purple);
+    --clr-contrast-dark: var(--clr-jade);
+
+    font-size: 18px;
+    background-color: var(--clr-powder-blue);
+    color: var(night);
+}
+
+.pic-200 {
+    width: 150px;
+}
+
+header {
+    display: flex;
+}
+
+h1 {
+    font-size: 1.7rem;
+}
+
+li {
+    font-family: dancing-script-yfke;
+    color: var(--clr-dark-slate-gray);
+}
+
+.user-login-form {
+    display: flex;
+    height: 100%;
+    min-width: 15%;
+    background-color: var(--clr-brown-sugar);
+}
