@@ -1,45 +1,3 @@
-.poiret-one-regular {
-    font-family: "Poiret One", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-
-.cinzel-yfke {
-    font-family: "Cinzel", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.edu-nsw act foundation-yfke {
-    font-family: "Edu NSW ACT Foundation", cursive;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.dancing-script-yfke {
-    font-family: "Dancing Script", cursive;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.raleway-yfke {
-    font-family: "Raleway", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 200;
-    font-style: normal;
-}
-
-.mulish-yfke {
-    font-family: "Mulish", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 200;
-    font-style: normal;
-}
-
 root {
     /* Variables */
     --clr-jade: #44af69ff;
@@ -53,42 +11,121 @@ root {
     --clr-sunset: #ffcf9cff;
     --clr-brown-sugar: #b96d40ff;
 
-    --clr-dark: var(--clr-baby-powder);
-    --clr-darker: var(--clr-powder-blue);
-    --clr-darkest: var(--clr-indigo-dye);
-    --clr-contrast: var(--clr-aquamarine);
-    --clr-border: var(--clr-brown-sugar);
-    --clr-highlight: var(--clr-sunset);
-    --clr-lowlight: var(--clr-burgundy);
-    --clr-night: var(--clr-dark-slate-gray);
-    --clr-dark-text: var(--clr-dark-purple);
-    --clr-contrast-dark: var(--clr-jade);
+
+    --clr-dark: var(#f0f4efff);
+    --clr-darker: var(#b4cdedff);
+    --clr-darkest: var(#344966ff);
+    --clr-contrast: var(#44ffd2ff);
+    --clr-border: var(#b96d40ff);
+    --clr-highlight: var(#ffcf9cff);
+    --clr-lowlight: var(#941c2fff);
+    --clr-night: var(#33473fff);
+    --clr-dark-text: var(#3b1c32ff);
+    --clr-contrast-dark: var(#44af69ff);
+
+    --fnt-highlight-txt: "Poiret One", sans-serif;
+    --fnt-form-btn: "Cinzel", serif;
+    --fnt-form-txt: "Edu NSW ACT Foundation", cursive;
+    --fnt-titles: "Dancing Script", cursive;
+    --fnt-aside-txt: "Raleway", sans-serif;
+    --fnt-page-txt: "Mulish", sans-serif;
 
     font-size: 18px;
+    font-family: var(--fnt-form-btn);
     background-color: var(--clr-powder-blue);
     color: var(night);
 }
 
 .pic-200 {
-    width: 150px;
+    width: 100px;
 }
 
 header {
     display: flex;
+    justify-content: space-between;
+}
+
+nav {
+    display: flex;
+    flex-flow: row nowrap;
+    min-width: 50%;
 }
 
 h1 {
     font-size: 1.7rem;
+    font-family: var(--fnt-titles);
+}
+
+ul {
+    display: flex;
+    flex-flow: row nowrap;
+    min-width: 35%;
 }
 
 li {
-    font-family: dancing-script-yfke;
+    text-decoration: none;
+    font-family: var(--fnt-titles);
+    display: flex;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+a {
+    font-family: var(--fnt-titles);
+    text-decoration: none;
     color: var(--clr-dark-slate-gray);
+}
+
+form {
+    display: flex;
+}
+
+input {
+    display: flex;
+    background-color: var(--clr-dark-purple);
+    columns: var(--clr-baby-powder);
+}
+
+button {
+    padding: 0.75rem;
+    font-family: var(--fnt-form-btns);
+    border-radius: 12%;
+    justify-content: space-between;
+}
+
+.userForm {
+    display: block;
+    border: solid 2px var(--clr-burgundy);
+    border-radius: 15%;
+}
+
+.form-page {
+    display: flex;
+    flex-flow: row;
+    border: var(--clr-burgundy);
+    color: var(--clr-burgundy);
+}
+
+.form-input {
+    display: inline;
+    border: var(--clr-brown-sugar);
+    background-color: var(--clr-baby-powder);
+    padding: 0.7rem;
+    margin: 0.5rem;
+    border-radius: 1.5rem;
+}
+
+.log-in-form-l2 {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.7rem;
+    margin: 0.5rem;
+    border-radius: 1.5rem;
 }
 
 .user-login-form {
     display: flex;
     height: 100%;
-    min-width: 15%;
+    min-width: 10%;
     background-color: var(--clr-brown-sugar);
 }
